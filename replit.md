@@ -94,3 +94,42 @@ Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHea
 ### `scripts` (`@workspace/scripts`)
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.
+
+### `artifacts/golf-charity` (`@workspace/golf-charity`)
+
+React + Vite frontend for GolfGives.
+
+- Entry: `src/main.tsx`
+- App: `src/App.tsx` — QueryClientProvider, AuthProvider, WouterRouter, all routes
+- Auth: `src/lib/auth-context.tsx` — JWT stored in localStorage as `gc_token`, user in `gc_user`
+- API client: `setAuthTokenGetter(() => localStorage.getItem("gc_token"))` set in App.tsx
+- Pages: `home`, `login`, `register`, `dashboard`, `charities`, `charity-detail`, `draws`, `admin/index`, `admin/users`, `admin/draws`, `admin/charities`, `admin/winners`
+- Theme: deep emerald (`hsl(153 60% 20%)`), gold accent (`hsl(45 90% 50%)`), cream background, Playfair Display serif font
+
+## GolfGives Platform Features
+
+### User Flow
+1. Register → choose charity (optional) + contribution %
+2. Subscribe monthly (£9.99) or yearly (£99) — demo mode (no Stripe)
+3. Add up to 5 Stableford scores (1–45)
+4. Monthly draw: 5 numbers drawn from 1–45; match 3=25%, match 4=35%, match 5=40% of prize pool
+5. Jackpot rolls over if no 5-match winner
+
+### Admin Flow
+- Admin panel at `/admin` (role=admin required)
+- Create draws → Simulate → review results → Publish
+- Manage users, charities (CRUD), and winners (approve/reject/mark-paid)
+- Analytics dashboard with prize pool breakdown
+
+### Test Credentials
+- Admin: `admin@golfgives.com` / `admin123`
+- User: `james@golfgives.com` / `golf123`
+
+### Database Tables
+users, subscriptions, scores, charities, userCharities, draws, drawResults, winners
+
+### Password Hashing
+Node.js built-in `crypto.scrypt` (bcrypt/argon2 had native build issues)
+
+### Auth
+JWT with `SESSION_SECRET` env var, expires 7 days, stored in localStorage as `gc_token`

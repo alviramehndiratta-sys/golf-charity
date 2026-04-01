@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Golf Charity Platform"
+version = "1.0.0"
+id = "artifacts/golf-charity"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18694
+
+[services.development]
+run = "pnpm --filter @workspace/golf-charity run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/golf-charity", "run", "build" ]
+publicDir = "artifacts/golf-charity/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18694"
+BASE_PATH = "/"
