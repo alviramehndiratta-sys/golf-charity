@@ -1,0 +1,280 @@
+You are a senior full-stack engineer tasked with building a production-ready web application. This is not a prototype. You must generate clean, scalable, modular, and fully functional code with proper architecture, error handling, and real backend integration.
+
+PROJECT TITLE: Golf Charity Subscription Platform
+
+OBJECTIVE:
+Build a full-stack subscription-based web application where users can subscribe, enter golf scores, participate in monthly prize draws, and contribute to charities. The system must include a complete user panel, admin panel, payment system, draw engine, charity system, and winner verification flow.
+
+TECH STACK (STRICTLY FOLLOW):
+Frontend:
+
+* Next.js (App Router, latest version)
+* Tailwind CSS
+* Framer Motion for animations
+
+Backend:
+
+* Supabase (PostgreSQL, Auth, Storage)
+
+Payments:
+
+* Stripe (subscription billing)
+
+Deployment:
+
+* Vercel-compatible setup
+
+PROJECT STRUCTURE (STRICT):
+/app
+/auth (login, signup)
+/dashboard (user dashboard)
+/admin (admin dashboard)
+/charities
+/api (server routes/actions)
+
+/components
+Navbar
+Forms
+Cards
+Modals
+Charts
+
+/lib
+supabaseClient.js
+stripe.js
+helpers.js
+
+/database
+schema.sql
+
+AUTHENTICATION:
+
+* Use Supabase Auth (email/password)
+* Protect all dashboard and admin routes
+* Implement role-based access: user and admin
+* Enforce authentication checks on all API routes
+
+SUBSCRIPTION SYSTEM:
+
+* Plans: Monthly and Yearly (yearly discounted)
+* Integrate Stripe Checkout and subscriptions
+* Store subscription status in database
+* Restrict platform features if subscription inactive
+* Handle:
+
+  * renewals
+  * cancellations
+  * expired subscriptions
+* Validate subscription status on every authenticated request
+
+SCORE MANAGEMENT SYSTEM:
+
+* Each user stores exactly 5 latest golf scores
+* Each score:
+
+  * integer value between 1–45 (Stableford format)
+  * must include a date
+* Logic:
+
+  * If a 6th score is added → automatically remove oldest score
+  * Always display scores in reverse chronological order (newest first)
+
+DRAW SYSTEM:
+
+* Monthly draw execution (admin-controlled)
+* Match tiers:
+
+  * 5-number match (40% prize pool, rollover if no winner)
+  * 4-number match (35%)
+  * 3-number match (25%)
+
+Draw logic:
+
+* Random number generation (default)
+* Optional weighted algorithm based on score frequency
+* Admin can:
+
+  * run simulation (preview results)
+  * publish final draw
+
+PRIZE POOL LOGIC:
+
+* A portion of each subscription contributes to prize pool
+* Automatically calculate pool based on active subscribers
+* Split winnings equally among winners in the same tier
+* 5-match jackpot rolls over if no winner
+
+CHARITY SYSTEM:
+
+* Users select a charity during signup
+* Minimum 10% contribution of subscription fee
+* Users can increase percentage voluntarily
+
+Features:
+
+* Charity listing page with search and filtering
+* Individual charity profile page (description, images, events)
+* Featured charity section on homepage
+
+WINNER VERIFICATION SYSTEM:
+
+* Winners must upload proof (image)
+* Store uploads using Supabase Storage
+* Admin can:
+
+  * approve or reject submissions
+* Payment states:
+
+  * Pending
+  * Approved
+  * Paid
+
+USER DASHBOARD (MUST INCLUDE):
+
+* Subscription status (active/inactive, renewal date)
+* Score entry and editing interface
+* Charity selection and contribution percentage
+* Draw participation summary
+* Winnings overview and payout status
+
+ADMIN DASHBOARD (MUST INCLUDE):
+
+User Management:
+
+* View/edit users
+* Edit user scores
+* Manage subscriptions
+
+Draw Management:
+
+* Configure draw logic
+* Run simulations
+* Publish results
+
+Charity Management:
+
+* Add/edit/delete charities
+* Manage charity content
+
+Winner Management:
+
+* View all winners
+* Verify proof submissions
+* Mark payouts as completed
+
+Analytics:
+
+* Total users
+* Total prize pool
+* Charity contribution totals
+* Draw statistics
+
+DATABASE DESIGN:
+Create a proper relational schema including:
+
+Tables:
+
+* users
+* subscriptions
+* scores
+* draws
+* draw_results
+* charities
+* user_charities
+* winners
+* payouts
+
+Requirements:
+
+* Use foreign keys and constraints
+* Maintain data integrity
+* Ensure scalability
+
+UI/UX REQUIREMENTS:
+
+* DO NOT design like a traditional golf website
+* Focus on emotional engagement, charity impact, and modern design
+* Use:
+
+  * clean layouts
+  * soft gradients
+  * subtle animations (Framer Motion)
+
+Homepage must clearly communicate:
+
+* What the platform does
+* How users win
+* Charity impact
+* Strong call-to-action (Subscribe)
+
+RESPONSIVENESS:
+
+* Mobile-first design
+* Fully responsive across devices
+
+EMAIL NOTIFICATIONS:
+Implement email triggers for:
+
+* Signup confirmation
+* Subscription updates
+* Draw results
+* Winner notifications
+
+SECURITY:
+
+* Validate all user inputs
+* Protect all API endpoints
+* Implement role-based authorization
+* Secure file uploads
+* Enforce HTTPS assumptions
+
+PERFORMANCE:
+
+* Optimize database queries
+* Use server components where appropriate
+* Lazy load heavy UI components
+
+ENVIRONMENT VARIABLES:
+
+* Configure Supabase keys
+* Configure Stripe keys
+* Ensure proper environment setup
+
+CRITICAL CONSTRAINTS:
+
+* Do NOT use mock data
+* Do NOT hardcode values
+* All features must be fully functional and database-driven
+* Do NOT skip backend logic
+
+TESTING REQUIREMENTS:
+Ensure the following works correctly:
+
+* User signup and login
+* Subscription flow (monthly and yearly)
+* Score system enforces 5-score limit
+* Draw system produces correct results
+* Charity contribution calculations are accurate
+* Winner verification workflow functions correctly
+* Admin dashboard fully operational
+* Data consistency across all modules
+* Mobile and desktop responsiveness
+* Proper error handling
+
+DEVELOPMENT EXPECTATION:
+
+* Think like a production engineer
+* Write clean, maintainable code
+* Follow best practices
+* Ensure scalability for future expansion
+
+OUTPUT REQUIREMENT:
+Generate the full application code step-by-step, including:
+
+* Database schema
+* Backend logic
+* Frontend UI
+* API routes
+* Integration logic
+
+Do not provide explanations. Focus on building the complete working system.
