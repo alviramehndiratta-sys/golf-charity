@@ -1,0 +1,176 @@
+You are a senior frontend + full-stack engineer. Improve the existing application UI/UX and fix currency handling across the entire system.
+
+IMPORTANT:
+Do NOT rebuild the app. Modify and enhance the existing codebase.
+
+---
+
+🎨 UI/UX REDESIGN (MAJOR UPGRADE REQUIRED)
+
+Current issue:
+
+* UI is too basic, flat, and overly green
+* Lacks visual hierarchy, depth, and interaction
+
+Goal:
+Transform into a premium, modern, emotionally engaging interface.
+
+---
+
+DESIGN SYSTEM:
+
+Color Palette:
+
+* Primary: Deep indigo / violet gradient
+* Secondary: Soft pink / purple accents
+* Neutral: whites, greys, subtle glass effects
+* Remove excessive green usage
+
+Style:
+
+* Use glassmorphism + soft shadows
+* Rounded corners (xl/2xl)
+* Gradient backgrounds (not flat colors)
+
+Typography:
+
+* Clean modern font (Inter / Poppins)
+* Strong hierarchy (headings bold, body light)
+
+---
+
+✨ INTERACTIVITY (VERY IMPORTANT)
+
+Add:
+
+* Hover effects on all buttons/cards
+* Smooth transitions (200–300ms)
+* Micro-animations using Framer Motion:
+
+  * fade-in on load
+  * card hover lift
+  * button press feedback
+  * dashboard widgets animate on entry
+
+---
+
+📱 RESPONSIVENESS
+
+* Ensure perfect mobile layout
+* Use stacked layouts on small screens
+* Improve spacing and readability
+
+---
+
+🏠 HOMEPAGE IMPROVEMENT
+
+Must clearly show:
+
+* What the platform does
+* How users win
+* Charity impact
+* Strong CTA button
+
+Add:
+
+* Hero section with gradient + animation
+* Feature cards (interactive)
+* Stats section (animated numbers)
+
+---
+
+📊 DASHBOARD UI IMPROVEMENTS
+
+User dashboard:
+
+* Use card-based layout
+* Add:
+
+  * stat cards (subscription, winnings, scores)
+  * clean score table UI
+  * visual indicators (badges, highlights)
+
+Admin dashboard:
+
+* Improve layout clarity
+* Use tabs or sections
+* Add charts (if possible)
+
+---
+
+💎 COMPONENT IMPROVEMENTS
+
+Upgrade all:
+
+* Buttons → gradient + hover glow
+* Inputs → modern, clean borders + focus states
+* Cards → shadows + hover lift
+* Modals → centered, smooth animation
+
+---
+
+💱 CURRENCY FIX (CRITICAL)
+
+Current issue:
+
+* Values displayed in EUR
+
+Fix requirements:
+
+* Convert all currency display to INR (₹)
+
+DO NOT just replace symbol.
+
+Implement:
+
+* Proper currency formatting using:
+  Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' })
+
+Example:
+₹1,00,000 instead of €1000
+
+---
+
+Ensure:
+
+* All UI shows INR
+* All calculations remain correct
+* No hardcoded currency values
+
+---
+
+🔍 WHERE TO FIX CURRENCY
+
+Check and update:
+
+* Subscription pricing
+* Prize pool calculations
+* Winnings display
+* Admin analytics
+* Any stored or displayed amounts
+
+---
+
+⚡ PERFORMANCE
+
+* Avoid heavy animations
+* Keep UI smooth and fast
+* Lazy load large components if needed
+
+---
+
+🧠 FINAL REQUIREMENT
+
+* Do NOT break existing functionality
+* Only enhance UI and fix currency system
+* Maintain clean, modular code
+* Ensure consistency across entire app
+
+---
+
+OUTPUT:
+
+* Updated components
+* Updated styles
+* Currency utility function
+* Clean integration across app
