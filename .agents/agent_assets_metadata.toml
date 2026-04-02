@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "KjdvHkIu8x6oLW3pQwwQK"
+uri = "file://README.md"
+type = "text"
+title = "GolfGives — README.md"
