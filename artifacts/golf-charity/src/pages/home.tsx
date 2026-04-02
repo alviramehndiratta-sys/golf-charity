@@ -4,15 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useGetFeaturedCharities } from "@workspace/api-client-react";
-import { Trophy, Heart, Star, ArrowRight, Users, Coins, Target } from "lucide-react";
+import { Trophy, Heart, ArrowRight, Users, ClipboardList, Ticket } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 const stagger = {
-  visible: { transition: { staggerChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.12 } },
 };
 
 export default function HomePage() {
@@ -22,32 +22,32 @@ export default function HomePage() {
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: "radial-gradient(circle at 20% 50%, hsl(45 90% 50%) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsl(153 60% 40%) 0%, transparent 50%)"
+        <div className="absolute inset-0 opacity-[0.06]" style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
         }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
             <motion.div variants={fadeUp}>
-              <Badge className="bg-accent text-accent-foreground mb-6 px-4 py-1.5 text-sm font-semibold">
-                Golf + Charity + Prizes
+              <Badge className="bg-accent text-white mb-6 px-3 py-1 text-xs font-medium tracking-wide uppercase">
+                Monthly Draw · Charity-backed
               </Badge>
             </motion.div>
-            <motion.h1 variants={fadeUp} className="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6">
-              Play golf. Win prizes. Change lives.
+            <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight">
+              Your Stableford score<br className="hidden sm:block" /> is your lottery ticket.
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-xl text-primary-foreground/80 mb-10 leading-relaxed max-w-2xl">
-              GolfGives is the subscription platform that turns your Stableford scores into lottery tickets — and a portion of every subscription goes directly to the charities you love.
+            <motion.p variants={fadeUp} className="text-lg text-white/75 mb-10 leading-relaxed max-w-xl">
+              GolfGives lets you enter a monthly prize draw using the scores you're already submitting. Subscribe, pick a charity to support, and you're in — no extra effort required.
             </motion.p>
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3">
               <Link href="/register">
-                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8 gap-2" data-testid="button-hero-cta">
-                  Start Playing
-                  <ArrowRight className="w-5 h-5" />
+                <Button size="lg" className="bg-accent text-white hover:bg-accent/90 text-sm font-semibold px-7 gap-2" data-testid="button-hero-cta">
+                  Get started
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link href="/draws">
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 text-base px-8">
-                  See How It Works
+                <Button size="lg" variant="outline" className="border-white/25 text-white hover:bg-white/10 text-sm font-medium px-7">
+                  See how it works
                 </Button>
               </Link>
             </motion.div>
@@ -55,50 +55,68 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Stats strip */}
+      <section className="bg-primary/[0.06] border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-3 divide-x divide-border">
+            {[
+              { value: "£9.99/mo", label: "to enter every month" },
+              { value: "10%+", label: "of each sub to charity" },
+              { value: "Monthly", label: "prize draw" },
+            ].map((stat, i) => (
+              <div key={i} className="py-6 px-4 text-center">
+                <div className="text-xl font-bold text-primary">{stat.value}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="text-center mb-16">
-            <motion.h2 variants={fadeUp} className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="mb-14">
+            <motion.h2 variants={fadeUp} className="text-3xl font-bold text-foreground mb-3">
               How it works
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Three simple steps to join a community doing good through golf
+            <motion.p variants={fadeUp} className="text-muted-foreground text-base max-w-xl">
+              It takes about two minutes to set up, and after that your round does the work.
             </motion.p>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-3 gap-8">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-3 gap-6">
             {[
               {
-                icon: <Users className="w-8 h-8" />,
-                step: "1",
-                title: "Subscribe and choose your charity",
-                desc: "Pick a monthly or yearly plan. Choose the charity your subscription will support — minimum 10% goes directly to them.",
+                icon: <Users className="w-5 h-5" />,
+                step: "01",
+                title: "Subscribe and pick your charity",
+                desc: "Choose a monthly or yearly plan. During sign-up, select a partner charity — at least 10% of your subscription goes directly to them every month.",
               },
               {
-                icon: <Target className="w-8 h-8" />,
-                step: "2",
-                title: "Enter your Stableford scores",
-                desc: "Log up to 5 golf scores (1–45 Stableford). Your latest scores become your monthly draw entries — no extra tickets needed.",
+                icon: <ClipboardList className="w-5 h-5" />,
+                step: "02",
+                title: "Log your Stableford scores",
+                desc: "After each round, add your score to your dashboard (1–45 Stableford). You can keep up to five scores on file — your most recent ones become your draw entries.",
               },
               {
-                icon: <Trophy className="w-8 h-8" />,
-                step: "3",
-                title: "Win prizes every month",
-                desc: "Each month we draw 5 numbers. Match 3, 4, or all 5 of your scores to win your tier of the prize pool. Jackpot rolls over!",
+                icon: <Ticket className="w-5 h-5" />,
+                step: "03",
+                title: "We draw five numbers each month",
+                desc: "Match 3, 4, or all 5 of your scores to the drawn numbers and you win a share of that month's prize pool. The jackpot rolls over if no one hits all five.",
               },
             ].map((item, i) => (
               <motion.div key={i} variants={fadeUp}>
-                <Card className="border-border hover:shadow-lg transition-shadow duration-300 h-full">
-                  <CardContent className="p-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <Card className="border-border h-full">
+                  <CardContent className="p-7">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-9 h-9 rounded-md bg-primary/10 flex items-center justify-center text-primary">
                         {item.icon}
                       </div>
-                      <span className="font-serif text-4xl font-bold text-accent">{item.step}</span>
+                      <span className="text-xs font-mono font-semibold text-muted-foreground">{item.step}</span>
                     </div>
-                    <h3 className="font-semibold text-lg mb-3">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                    <h3 className="font-semibold text-base mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -110,29 +128,28 @@ export default function HomePage() {
       {/* Prize Tiers */}
       <section className="py-24 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="text-center mb-16">
-            <motion.h2 variants={fadeUp} className="font-serif text-3xl sm:text-4xl font-bold mb-4">
-              Three tiers. One jackpot.
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="mb-14">
+            <motion.h2 variants={fadeUp} className="text-3xl font-bold mb-3">
+              Prize tiers
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Every subscription contributes to the prize pool. Match more scores, win a bigger share.
+            <motion.p variants={fadeUp} className="text-muted-foreground text-base max-w-xl">
+              Every subscription contributes to the pool. The more scores you match, the bigger your cut.
             </motion.p>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-3 gap-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-3 gap-5">
             {[
-              { tier: "5 Matches", label: "Jackpot", pct: "40%", color: "border-accent bg-accent/5", icon: "🏆", desc: "Match all 5 drawn numbers. Rolls over if no winner." },
-              { tier: "4 Matches", label: "Big Win", pct: "35%", color: "border-primary/30 bg-primary/5", icon: "🥈", desc: "Match exactly 4 of the 5 drawn numbers." },
-              { tier: "3 Matches", label: "Winner", pct: "25%", color: "border-muted-foreground/20 bg-muted-foreground/5", icon: "🥉", desc: "Match any 3 of the 5 drawn numbers." },
+              { tier: "5 matches", label: "Jackpot", pct: "40%", highlight: true, desc: "All five drawn numbers match your logged scores. Rolls over to next month if no winner." },
+              { tier: "4 matches", label: "Second prize", pct: "35%", highlight: false, desc: "Four of the five drawn numbers appear in your submitted scores." },
+              { tier: "3 matches", label: "Third prize", pct: "25%", highlight: false, desc: "Three of the five match. Split equally among all three-match winners that month." },
             ].map((tier, i) => (
               <motion.div key={i} variants={fadeUp}>
-                <Card className={`border-2 ${tier.color} h-full`}>
-                  <CardContent className="p-8 text-center">
-                    <div className="text-4xl mb-4">{tier.icon}</div>
-                    <div className="font-serif text-5xl font-bold text-accent mb-2">{tier.pct}</div>
-                    <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-1">{tier.tier}</div>
-                    <div className="font-semibold text-lg mb-3">{tier.label}</div>
-                    <p className="text-muted-foreground text-sm">{tier.desc}</p>
+                <Card className={`h-full border ${tier.highlight ? "border-accent/40 bg-accent/[0.04]" : "border-border"}`}>
+                  <CardContent className="p-7">
+                    <div className="text-3xl font-bold text-accent mb-1">{tier.pct}</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-widest mb-1 font-medium">{tier.tier}</div>
+                    <div className="font-semibold text-base mb-3">{tier.label}</div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{tier.desc}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -145,33 +162,33 @@ export default function HomePage() {
       {featured && featured.length > 0 && (
         <section className="py-24 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="text-center mb-16">
-              <motion.h2 variants={fadeUp} className="font-serif text-3xl sm:text-4xl font-bold mb-4">
-                Charities we support
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="mb-14">
+              <motion.h2 variants={fadeUp} className="text-3xl font-bold mb-3">
+                Partner charities
               </motion.h2>
-              <motion.p variants={fadeUp} className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Every subscriber chooses where their contribution goes. These are our featured partners.
+              <motion.p variants={fadeUp} className="text-muted-foreground text-base max-w-xl">
+                When you sign up, you choose one of these organisations to receive a share of your subscription each month.
               </motion.p>
             </motion.div>
 
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
               {featured.slice(0, 3).map((charity, i) => (
                 <motion.div key={charity.id} variants={fadeUp}>
                   <Link href={`/charities/${charity.id}`}>
-                    <Card className="border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full" data-testid={`card-charity-${charity.id}`}>
+                    <Card className="border-border hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer h-full" data-testid={`card-charity-${charity.id}`}>
                       {charity.imageUrl && (
-                        <div className="h-40 overflow-hidden rounded-t-lg">
+                        <div className="h-36 overflow-hidden rounded-t-md">
                           <img src={charity.imageUrl} alt={charity.name} className="w-full h-full object-cover" />
                         </div>
                       )}
-                      <CardContent className="p-6">
+                      <CardContent className="p-5">
                         <Badge variant="outline" className="mb-3 text-xs">{charity.category}</Badge>
-                        <h3 className="font-semibold text-lg mb-2">{charity.name}</h3>
+                        <h3 className="font-semibold text-base mb-1.5">{charity.name}</h3>
                         <p className="text-muted-foreground text-sm line-clamp-2">{charity.description}</p>
                         {charity.totalContributions > 0 && (
-                          <div className="mt-4 flex items-center gap-2 text-primary text-sm font-medium">
-                            <Heart className="w-4 h-4" />
-                            £{Number(charity.totalContributions).toFixed(0)} raised
+                          <div className="mt-4 flex items-center gap-1.5 text-primary text-xs font-medium">
+                            <Heart className="w-3.5 h-3.5" />
+                            £{Number(charity.totalContributions).toFixed(0)} raised via GolfGives
                           </div>
                         )}
                       </CardContent>
@@ -181,11 +198,11 @@ export default function HomePage() {
               ))}
             </motion.div>
 
-            <div className="text-center">
+            <div>
               <Link href="/charities">
-                <Button variant="outline" size="lg" className="gap-2">
-                  View All Charities
-                  <ArrowRight className="w-4 h-4" />
+                <Button variant="outline" size="sm" className="gap-2">
+                  View all charities
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Button>
               </Link>
             </div>
@@ -193,34 +210,41 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* Pricing CTA */}
+      {/* Pricing */}
       <section className="py-24 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="text-center mb-16">
-            <motion.h2 variants={fadeUp} className="font-serif text-3xl sm:text-4xl font-bold text-primary-foreground mb-4">
-              Ready to play?
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="mb-14">
+            <motion.h2 variants={fadeUp} className="text-3xl font-bold text-white mb-3">
+              Pricing
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
-              Join hundreds of golfers who are winning prizes and funding charities they love.
+            <motion.p variants={fadeUp} className="text-white/70 text-base max-w-xl">
+              One flat subscription. No entry fees on top, no catches. Cancel any time.
             </motion.p>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-2 gap-5 max-w-2xl">
             {[
-              { plan: "Monthly", price: "£9.99", period: "/month", popular: false, desc: "Pay month-to-month, cancel anytime." },
-              { plan: "Yearly", price: "£99", period: "/year", popular: true, desc: "Save £20.88 per year vs monthly." },
+              { plan: "Monthly", price: "£9.99", period: "per month", popular: false, desc: "Good for trying it out. No commitment beyond the month." },
+              { plan: "Yearly", price: "£99", period: "per year", popular: true, desc: "Two months free compared to monthly. Locks in your charity contribution for the year." },
             ].map((plan, i) => (
               <motion.div key={i} variants={fadeUp}>
-                <Card className={`border-2 ${plan.popular ? "border-accent bg-accent/5" : "border-primary-foreground/20 bg-primary-foreground/5"}`}>
-                  <CardContent className="p-8 text-center">
-                    {plan.popular && <Badge className="bg-accent text-accent-foreground mb-4">Best Value</Badge>}
-                    <div className="font-semibold text-primary-foreground/80 mb-2">{plan.plan}</div>
-                    <div className="font-serif text-5xl font-bold text-primary-foreground mb-1">{plan.price}</div>
-                    <div className="text-primary-foreground/60 text-sm mb-4">{plan.period}</div>
-                    <p className="text-primary-foreground/70 text-sm mb-6">{plan.desc}</p>
+                <Card className={`border ${plan.popular ? "border-accent/50 bg-white/[0.08]" : "border-white/15 bg-white/[0.04]"}`}>
+                  <CardContent className="p-7">
+                    {plan.popular && (
+                      <Badge className="bg-accent text-white mb-4 text-xs font-medium">Best value</Badge>
+                    )}
+                    <div className="text-sm font-medium text-white/70 mb-1">{plan.plan}</div>
+                    <div className="text-4xl font-bold text-white mb-1">{plan.price}</div>
+                    <div className="text-white/50 text-xs mb-4">{plan.period}</div>
+                    <p className="text-white/65 text-sm mb-6 leading-relaxed">{plan.desc}</p>
                     <Link href="/register">
-                      <Button className={plan.popular ? "bg-accent text-accent-foreground w-full hover:bg-accent/90" : "bg-primary-foreground text-primary w-full hover:bg-primary-foreground/90"} data-testid={`button-plan-${plan.plan.toLowerCase()}`}>
-                        Get Started
+                      <Button
+                        className={plan.popular
+                          ? "bg-accent text-white w-full hover:bg-accent/90 text-sm font-semibold"
+                          : "bg-white text-primary w-full hover:bg-white/90 text-sm font-semibold"}
+                        data-testid={`button-plan-${plan.plan.toLowerCase()}`}
+                      >
+                        Get started
                       </Button>
                     </Link>
                   </CardContent>

@@ -50,82 +50,82 @@
 }
 
 :root {
-  --background: 240 20% 98%;
-  --foreground: 240 20% 10%;
+  --background: 60 20% 98%;
+  --foreground: 160 25% 10%;
 
   --card: 0 0% 100%;
-  --card-foreground: 240 20% 10%;
-  --card-border: 240 10% 90%;
+  --card-foreground: 160 25% 10%;
+  --card-border: 150 10% 88%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 240 20% 10%;
-  --popover-border: 240 10% 90%;
+  --popover-foreground: 160 25% 10%;
+  --popover-border: 150 10% 88%;
 
-  --primary: 252 80% 57%;
+  --primary: 155 48% 22%;
   --primary-foreground: 0 0% 100%;
-  --primary-border: 252 80% 47%;
+  --primary-border: 155 48% 16%;
 
-  --secondary: 280 60% 95%;
-  --secondary-foreground: 252 80% 40%;
-  --secondary-border: 280 40% 88%;
+  --secondary: 150 25% 94%;
+  --secondary-foreground: 155 48% 22%;
+  --secondary-border: 150 20% 86%;
 
-  --muted: 240 10% 96%;
-  --muted-foreground: 240 10% 50%;
-  --muted-border: 240 10% 90%;
+  --muted: 150 12% 95%;
+  --muted-foreground: 150 8% 46%;
+  --muted-border: 150 10% 88%;
 
-  --accent: 320 80% 60%;
+  --accent: 43 88% 46%;
   --accent-foreground: 0 0% 100%;
-  --accent-border: 320 80% 50%;
+  --accent-border: 43 88% 38%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --destructive-border: 0 84% 50%;
 
-  --border: 240 10% 88%;
-  --input: 240 10% 88%;
-  --ring: 252 80% 57%;
+  --border: 150 10% 86%;
+  --input: 150 10% 86%;
+  --ring: 155 48% 22%;
 
   --app-font-sans: 'Inter', 'Poppins', sans-serif;
   --app-font-serif: 'Inter', sans-serif;
   --app-font-mono: 'Space Mono', monospace;
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 }
 
 .dark {
-  --background: 240 20% 6%;
-  --foreground: 240 10% 97%;
+  --background: 160 20% 6%;
+  --foreground: 150 10% 97%;
 
-  --card: 240 20% 9%;
-  --card-foreground: 240 10% 97%;
-  --card-border: 240 15% 15%;
+  --card: 160 20% 9%;
+  --card-foreground: 150 10% 97%;
+  --card-border: 155 15% 15%;
 
-  --popover: 240 20% 9%;
-  --popover-foreground: 240 10% 97%;
-  --popover-border: 240 15% 15%;
+  --popover: 160 20% 9%;
+  --popover-foreground: 150 10% 97%;
+  --popover-border: 155 15% 15%;
 
-  --primary: 252 80% 65%;
+  --primary: 155 48% 38%;
   --primary-foreground: 0 0% 100%;
-  --primary-border: 252 80% 55%;
+  --primary-border: 155 48% 30%;
 
-  --secondary: 252 30% 15%;
-  --secondary-foreground: 252 80% 80%;
-  --secondary-border: 252 30% 20%;
+  --secondary: 155 20% 15%;
+  --secondary-foreground: 155 48% 70%;
+  --secondary-border: 155 20% 20%;
 
-  --muted: 240 15% 14%;
-  --muted-foreground: 240 10% 60%;
-  --muted-border: 240 15% 18%;
+  --muted: 155 15% 14%;
+  --muted-foreground: 150 10% 60%;
+  --muted-border: 155 15% 18%;
 
-  --accent: 320 80% 65%;
+  --accent: 43 88% 52%;
   --accent-foreground: 0 0% 100%;
-  --accent-border: 320 80% 55%;
+  --accent-border: 43 88% 42%;
 
   --destructive: 0 62% 40%;
   --destructive-foreground: 0 0% 100%;
   --destructive-border: 0 62% 30%;
 
-  --border: 240 15% 16%;
-  --input: 240 15% 16%;
-  --ring: 252 80% 65%;
+  --border: 155 15% 16%;
+  --input: 155 15% 16%;
+  --ring: 155 48% 38%;
 }
 
 @layer base {
@@ -147,25 +147,15 @@
 
 /* Gradient backgrounds */
 .gradient-primary {
-  background: linear-gradient(135deg, hsl(252, 80%, 57%) 0%, hsl(280, 80%, 55%) 50%, hsl(320, 80%, 60%) 100%);
+  background: linear-gradient(135deg, hsl(155, 48%, 18%) 0%, hsl(155, 48%, 26%) 100%);
 }
 
 .gradient-soft {
-  background: linear-gradient(135deg, hsl(240, 20%, 98%) 0%, hsl(280, 40%, 97%) 50%, hsl(320, 40%, 97%) 100%);
+  background: linear-gradient(135deg, hsl(60, 20%, 98%) 0%, hsl(150, 18%, 96%) 100%);
 }
 
 .gradient-card {
-  background: linear-gradient(145deg, rgba(255,255,255,1) 0%, rgba(245,240,255,0.8) 100%);
-}
-
-/* Button glow effects */
-.btn-glow {
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 0 4px 15px rgba(124, 58, 237, 0.2);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-.btn-glow:hover {
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.5), 0 8px 25px rgba(124, 58, 237, 0.3);
-  transform: translateY(-1px);
+  background: linear-gradient(145deg, rgba(255,255,255,1) 0%, rgba(240,248,244,0.8) 100%);
 }
 
 /* Card hover lift */
@@ -173,8 +163,8 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.12), 0 8px 16px rgba(0,0,0,0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(22, 80, 50, 0.1), 0 4px 12px rgba(0,0,0,0.05);
 }
 
 /* Stat number animation */
@@ -188,5 +178,5 @@
 
 /* Input focus glow */
 input:focus, select:focus, textarea:focus {
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+  box-shadow: 0 0 0 3px rgba(22, 90, 55, 0.12);
 }
