@@ -1,122 +1,75 @@
-# GolfGives — Golf Charity Prize Draw Platform
+# Golf Charity Subscription Platform
 
-> **Your Stableford score is your lottery ticket.**
+A full-stack web application that combines golf score tracking, monthly prize draws, and charitable contributions.
 
-GolfGives is a subscription-based web platform that connects amateur golfers with charitable giving through a monthly prize draw. Players use the Stableford scores they already earn on the course as entries into a lottery — no extra effort required. A portion of every subscription goes directly to a charity of the member's choice.
-
----
-
-## How It Works
-
-1. **Subscribe** — Choose a monthly or yearly plan.
-2. **Pick a Charity** — Browse partner charities across Health, Education, Environment, and more. Decide what percentage of your subscription (minimum 10%) goes to your chosen cause.
-3. **Log Your Scores** — Enter up to 5 recent Stableford scores (1–45). These become your draw numbers. The platform always keeps your five most recent scores active.
-4. **Win Prizes** — Every month, five numbers are drawn. The more of your scores that match, the bigger your share of the prize pool.
-
-### Prize Tiers
-
-| Matches | Prize |
-|---------|-------|
-| 5 (Jackpot) | 40% of the prize pool (rolls over if no winner) |
-| 4 Matches | 35% of the prize pool |
-| 3 Matches | 25% of the prize pool |
+Users enter their Stableford golf scores, which act as entries into a monthly draw. A portion of each subscription is donated to a charity selected by the user.
 
 ---
 
-## Features
+## 🚀 Features
 
-### For Members
-- **Score Dashboard** — Log and manage your five active Stableford scores at any time.
-- **Charity Selection** — Choose from a directory of vetted partner charities and adjust your contribution percentage with a slider.
-- **Winnings History** — View past wins, prize amounts, and payout status in one place.
-- **Flexible Subscriptions** — Monthly and yearly plans available.
-
-### Draw System
-- Five numbers are drawn each month.
-- Results are published publicly, including drawn numbers, prize tier winners, and historical draw archives.
-- Jackpot rolls over when no five-match winner is found.
-
-### Admin Suite
-- **Analytics Dashboard** — Overview of total users, active subscribers, monthly revenue, and pending payouts.
-- **User & Charity Management** — Manage member accounts and add or edit charity partners.
-- **Draw Control** — Simulate and publish monthly draws, triggering automated winner calculation and prize distribution.
-- **Payout Verification** — Review and process winner payouts.
+* Authentication & Roles — Secure login with user/admin access
+* Subscription System — Monthly and yearly plans with access control
+* Score Management — Maximum 5 scores per user (auto-removes oldest)
+* Draw System — Monthly draw with 3 prize tiers (5, 4, 3 matches)
+* Prize Pool Logic — Dynamic calculation with jackpot rollover
+* Charity System — Minimum 10% contribution, user-selectable
+* Winner Verification — Proof upload and admin approval flow
+* Dashboards — User and Admin panels with core functionality
 
 ---
 
-## Tech Stack
+## 🧱 Tech Stack
 
-- **Frontend:** React, TypeScript, Vite, Tailwind CSS
-- **Backend:** Node.js / Express (REST API)
-- **Monorepo:** pnpm workspaces
-
----
-
-## Project Structure
-
-```
-/
-├── artifacts/
-│   ├── golf-charity/        # React frontend
-│   │   └── src/
-│   │       ├── pages/
-│   │       │   ├── home.tsx         # Landing page & pricing
-│   │       │   ├── dashboard.tsx    # Member dashboard
-│   │       │   ├── draws.tsx        # Prize draw results
-│   │       │   └── admin/           # Admin management suite
-│   │       └── components/
-│   └── api-server/          # Express API backend
-└── README.md
-```
+* Frontend: React (Vite), Tailwind CSS
+* Backend: Node.js / Express
+* Database: Supabase
+* Payments: Stripe
 
 ---
 
-## Getting Started
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) v18+
-- [pnpm](https://pnpm.io/) v8+
-
-### Installation
+## ⚙️ Setup
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/golf-gives.git
-cd golf-gives
-
-# Install dependencies
+git clone https://github.com/alviramehndiratta-sys/golf-charity.git
+cd golf-charity/charity
 pnpm install
-```
-
-### Running Locally
-
-```bash
-# Start the API server
-pnpm --filter api-server dev
-
-# Start the frontend (in a separate terminal)
 pnpm --filter golf-charity dev
 ```
 
-The frontend will be available at `http://localhost:5173` and the API at `http://localhost:3000`.
+Run backend (optional):
+
+```bash
+pnpm --filter api-server dev
+```
 
 ---
 
-## Subscription Plans
+## 🌐 Live Demo
 
-| Plan | Price | Charity Contribution |
-|------|-------|----------------------|
-| Monthly | ₹999 / month | Min. 10% (adjustable up to 100%) |
-| Yearly | ₹9,999 / year | Min. 10% (adjustable up to 100%) |
+Deployed on Vercel (frontend only). Backend-dependent features may be limited in demo.
 
 ---
 
-## Contributing
+## 💡 Key Logic
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
+* Only the latest 5 scores are stored per user
+* New scores automatically replace the oldest
+* Draw system matches user scores with generated numbers
+* Prize pool is split dynamically (40% / 35% / 25%)
+* Fully database-driven (no hardcoded values)
 
 ---
 
-## License
+## ⚠️ Requirements
 
-[MIT](LICENSE)
+Tested on Node.js v18/v20.
+May not work correctly on Node v24 due to dependency compatibility.
+
+---
+
+## 📌 Notes
+
+This project was developed as part of a selection task and focuses on implementing the core logic (score system, draw system, and role-based access).
+
+Environment variables and API keys are not included for security reasons and need to be configured separately.
