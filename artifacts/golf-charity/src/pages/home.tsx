@@ -45,11 +45,14 @@ export default function HomePage() {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
-              <Link href="/draws">
-                <Button size="lg" variant="outline" className="border-white/25 text-white hover:bg-white/10 text-sm font-medium px-7">
-                  See how it works
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/25 text-white hover:bg-white/10 text-sm font-medium px-7"
+                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                See how it works
+              </Button>
             </motion.div>
           </motion.div>
         </div>
@@ -60,7 +63,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-3 divide-x divide-border">
             {[
-              { value: "£9.99/mo", label: "to enter every month" },
+              { value: "₹999/mo", label: "to enter every month" },
               { value: "10%+", label: "of each sub to charity" },
               { value: "Monthly", label: "prize draw" },
             ].map((stat, i) => (
@@ -74,7 +77,7 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="py-24 bg-background">
+      <section id="how-it-works" className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="mb-14">
             <motion.h2 variants={fadeUp} className="text-3xl font-bold text-foreground mb-3">
@@ -224,8 +227,8 @@ export default function HomePage() {
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-2 gap-5 max-w-2xl">
             {[
-              { plan: "Monthly", price: "£9.99", period: "per month", popular: false, desc: "Good for trying it out. No commitment beyond the month." },
-              { plan: "Yearly", price: "£99", period: "per year", popular: true, desc: "Two months free compared to monthly. Locks in your charity contribution for the year." },
+              { plan: "Monthly", price: "₹999", period: "per month", popular: false, desc: "Good for trying it out. No commitment beyond the month." },
+              { plan: "Yearly", price: "₹9,999", period: "per year", popular: true, desc: "Two months free compared to monthly. Locks in your charity contribution for the year." },
             ].map((plan, i) => (
               <motion.div key={i} variants={fadeUp}>
                 <Card className={`border ${plan.popular ? "border-accent/50 bg-white/[0.08]" : "border-white/15 bg-white/[0.04]"}`}>

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/lib/auth-context";
 import { Button } from "@/components/ui/button";
-import { Trophy, Menu, X, LogOut, LayoutDashboard, ChevronDown } from "lucide-react";
+import { Menu, X, LogOut, LayoutDashboard } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,9 +20,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight text-foreground">
-            <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
-              <Trophy className="w-4 h-4 text-white" />
-            </div>
+            <span className="text-xl leading-none">⛳</span>
             <span>GolfGives</span>
           </Link>
 
